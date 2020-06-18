@@ -1,0 +1,74 @@
+server:
+  port: 8081
+  use-forward-headers: true
+  #配置默认服务器为undertow
+  undertow:
+    #io线程
+    io-threads: 2
+    #工作线程
+    worker-threads: 36
+    #缓冲区大小
+    buffer-size: 1024
+    #配置是否直接连接缓冲区
+    directBuffers: true
+    #配置session过期时间
+  servlet:
+    session:
+      timeout: 86400s
+spring:
+  output:
+    ansi:
+      enabled: always
+      #配置数据源
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+
+
+
+#    MySql配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #远程服务器MySQL
+      #url: jdbc:mysql://47.113.125.242:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+   #本地MySQL服务器
+    url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+#jpa配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+      #配置是否显示sql
+    show-sql: false
+  freemarker:
+    #配置是否允许请求覆盖
+    allow-request-override: false
+    cache: false
+    #配置是否检查模板位置
+    check-template-location: true
+    #配置默认字符集编码
+    charset: utf-8
+    #配置模板的内容类型
+    content-type: text/html
+    #公开请求属性
+    expose-request-attributes: false
+    #公开会话属性
+    expose-session-attributes: false
+    #暴露Spring的宏助手
+    expose-spring-macro-helpers: true
+    suffix: .ftl
+    settings:
+      #配置自动导入
+      auto_import: /spring.ftl as spring
+  servlet:
+    multipart:
+      #最大文件大小
+      max-file-size: 10MB
+      #最大请求大小
+      max-request-size: 10MB
+
+  # 多语言资源文件路径
+  messages:
+    basename: i18n/messages
+logging:
+  file: ./logs/log.log
